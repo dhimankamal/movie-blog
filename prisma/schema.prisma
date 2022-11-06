@@ -28,7 +28,7 @@ model Categories {
    id String @id @default(cuid())
    categorieid Int @unique
    name String
-   slug String
+   slug String @unique
 }
 
 model Tags {

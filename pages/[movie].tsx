@@ -1,6 +1,6 @@
 import { Data } from "@prisma/client";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
-import { prisma } from '../db'
+import { prisma } from "../db";
 
 interface Props {
   data: (Data & { content: { rendered: string } }) | null;
@@ -9,6 +9,7 @@ interface Props {
 const SinglePost: NextPage<Props> = ({ data }) => {
   return (
     <div className="text-black text-center container px-5 mx-auto">
+      <h1 className="text-3xl font-bold">{data?.title}</h1>
       <div
         dangerouslySetInnerHTML={{
           __html: data?.content?.rendered || "",

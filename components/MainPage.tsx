@@ -1,4 +1,4 @@
-import { Data } from "@prisma/client";
+import { Categories, Data } from "@prisma/client";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,9 +7,10 @@ import { useRouter } from "next/router";
 
 interface Props {
   data: Data[];
+  category: Categories[];
 }
 
-const MainPage: NextPage<Props> = ({ data }) => {
+const MainPage: NextPage<Props> = ({ data, category }) => {
   const router = useRouter();
   const { number } = router.query;
   const getNextPageNumber = () => (number && +number > 0 ? +number + 1 : 2);
@@ -22,6 +23,7 @@ const MainPage: NextPage<Props> = ({ data }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+       
         <Postsgroup data={data} />
         <div className="flex justify-center items-center">
           <Link
