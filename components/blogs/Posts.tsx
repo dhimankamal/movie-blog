@@ -7,7 +7,6 @@ interface Props {
 }
 
 const Posts: NextPage<Props> = ({ data }) => {
-  console.log("data in post", data);
   return (
     <div className="p-4 md:w-1/4">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
@@ -26,7 +25,7 @@ const Posts: NextPage<Props> = ({ data }) => {
           
           <div className="flex items-center flex-wrap ">
             <Link
-              href={data.slug}
+              href={"/"+data.slug}
               className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
             >
               Download Now

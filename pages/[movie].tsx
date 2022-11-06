@@ -1,5 +1,6 @@
-import { Data, PrismaClient } from "@prisma/client";
+import { Data } from "@prisma/client";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
+import { prisma } from '../db'
 
 interface Props {
   data: (Data & { content: { rendered: string } }) | null;
@@ -18,16 +19,12 @@ const SinglePost: NextPage<Props> = ({ data }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prisma = new PrismaClient();
-  const data: Data[] = await prisma.data.findMany({
-    take: 20,
-  });
+  const data: Data[] = await prisma.data.findMany();
   const paths = data.map(element => `/${element.slug}`);
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const prisma = new PrismaClient();
   const data: Data | null = await prisma.data.findUnique({
     where: {
       slug: String(params?.movie),
