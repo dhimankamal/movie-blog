@@ -1,26 +1,28 @@
 import { Categories, Data } from "@prisma/client";
-import { prisma } from '../db'
+import { prisma } from "../db";
 import { GetStaticProps, NextPage } from "next";
 import MainPage from "../components/MainPage";
+import Pagination from "../components/Pagination";
+import Search from "../components/Search";
 interface Props {
   data: Data[];
-  category: Categories[]
 }
-const Home: NextPage<Props> = ({ data,category }) => {
+const Home: NextPage<Props> = ({ data }) => {
   return (
     <div>
-      <MainPage data={data} category={category} />
+      <Search />
+      <MainPage data={data} />
+      <Pagination />
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const data: Data[] = await prisma.data.findMany({
-    take: 8,
+    take: 8
   });
-  const category = await prisma.categories.findMany()
   return {
-    props: { data, category },
+    props: { data },
   };
 };
 

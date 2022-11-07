@@ -2,6 +2,7 @@ import { Data } from "@prisma/client";
 import { prisma } from '../../db'
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import MainPage from "../../components/MainPage";
+import Pagination from "../../components/Pagination";
 
 interface Props {
   data: Data[];
@@ -11,6 +12,7 @@ const PageNumber: NextPage<Props> = ({ data }) => {
   return (
     <>
       <MainPage data={data} />
+      <Pagination />
     </>
   );
 };
