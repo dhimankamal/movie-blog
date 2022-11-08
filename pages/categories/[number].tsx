@@ -27,9 +27,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  let number: string | undefined = String(params?.number) || "";
   const category: Categories | null = await prisma.categories.findUnique({
     where: {
-      slug: String(params?.number) || "",
+      slug: number,
     },
   });
   const data: Data[] | null = await prisma.data.findMany({
