@@ -6,7 +6,7 @@ interface Props {}
 const Search: NextPage<Props> = ({}) => {
   const router = useRouter();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     router.push(`/?search=${event.target[0].value}`);
   };
