@@ -6,14 +6,13 @@ import MainPage from "../components/MainPage";
 import Pagination from "../components/Pagination";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
-import { json } from "stream/consumers";
 interface Props {
   data: Data[];
 }
 const Home: NextPage<Props> = ({ data }) => {
   const router = useRouter();
   const [postData, setpostData] = useState(data);
-  const { search } = router.query;
+  const { search, page } = router.query;
 
   const updatePosts = async () => {
     try {
@@ -22,24 +21,24 @@ const Home: NextPage<Props> = ({ data }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ search }),
+        body: JSON.stringify({ search, page }),
       });
 
       const postDataRes = await res.json();
       if (postDataRes) setpostData(postDataRes);
-      console.log("postdata", postDataRes)
-      
     } catch (error) {
+      setpostData(data);
       console.log("error", error);
     }
   };
 
   useEffect(() => {
-    if (search) {
+    if (search || page) {
       updatePosts();
     } else {
+      setpostData(data);
     }
-  }, [search]);
+  }, [search, page]);
 
   return (
     <div>

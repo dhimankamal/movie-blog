@@ -7,10 +7,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data[]>
 ) {
-  const { search } = req.body;
+  const { search, page } = req.body;
+
+  let skip: number | undefined = undefined;
+
+  if (page) {
+    skip = +(page ? page - 1 : 0) * 8;
+  }
 
   const data: Data[] = await prisma.data.findMany({
     take: 8,
+    skip,
     where: {
       title: {
         contains: search,

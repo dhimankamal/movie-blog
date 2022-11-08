@@ -10,8 +10,6 @@ interface Props {
 }
 
 const MainPage: NextPage<Props> = ({ data }) => {
-
-
   return (
     <>
       <Head>
@@ -20,9 +18,7 @@ const MainPage: NextPage<Props> = ({ data }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-       
         <Postsgroup data={data} />
-    
       </main>
     </>
   );

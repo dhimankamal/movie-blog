@@ -17,15 +17,15 @@ const Posts: NextPage<Props> = ({ data }) => {
         />
         <div className="p-6">
           <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-            CATEGORY
+            {new Date(data.date).toLocaleString()}
           </h2>
           <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
             {data.title}
           </h1>
-          
+
           <div className="flex items-center flex-wrap ">
             <Link
-              href={"/"+data.slug}
+              href={"/" + data.slug}
               className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
             >
               Download Now
@@ -56,7 +56,7 @@ const Posts: NextPage<Props> = ({ data }) => {
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                 <circle cx={12} cy={12} r={3} />
               </svg>
-              1.2K
+              {(Math.random() * 100).toFixed()}K
             </span>
             <span className="text-gray-400 inline-flex items-center leading-none text-sm">
               <svg
@@ -70,7 +70,7 @@ const Posts: NextPage<Props> = ({ data }) => {
               >
                 <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
               </svg>
-              6
+              {(Math.random() * 10).toFixed()}
             </span>
           </div>
         </div>
