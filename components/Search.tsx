@@ -1,11 +1,18 @@
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 interface Props {}
 
 const Search: NextPage<Props> = ({}) => {
+  const router = useRouter();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    router.push(`/?search=${event.target[0].value}`);
+  };
   return (
     <div className="container mx-auto mt-4">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
