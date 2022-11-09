@@ -15,6 +15,8 @@ const Posts: NextPage<Props> = ({ data }) => {
           className=" w-full object-cover object-center"
           src={data.imageUrl || "https://dummyimage.com/200x300"}
           alt="blog"
+          width={200}
+          height={300}
         />
         <div className="p-6">
           <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
