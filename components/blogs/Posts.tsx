@@ -1,5 +1,6 @@
 import { Data } from "@prisma/client";
 import { NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
@@ -10,9 +11,9 @@ const Posts: NextPage<Props> = ({ data }) => {
   return (
     <div className="p-4 md:w-1/4">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-        <img
+        <Image
           className=" w-full object-cover object-center"
-          src={data.imageUrl || "https://dummyimage.com/720x400"}
+          src={data.imageUrl || "https://dummyimage.com/200x300"}
           alt="blog"
         />
         <div className="p-6">
