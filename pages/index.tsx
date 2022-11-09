@@ -33,6 +33,7 @@ const Home: NextPage<Props> = ({ data }) => {
   };
 
   useEffect(() => {
+    
     if (search || page) {
       updatePosts();
     } else {
