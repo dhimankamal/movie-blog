@@ -14,7 +14,8 @@ const Posts: NextPage<Props> = ({ data }) => {
         <Image
           className=" w-full object-cover object-center"
           src={data.imageUrl || "https://dummyimage.com/200x300"}
-          alt="blog"
+          alt={data.title + ' Image'}
+          title={data.title}
           width={200}
           height={300}
         />

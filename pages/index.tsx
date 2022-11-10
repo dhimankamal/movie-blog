@@ -53,6 +53,9 @@ const Home: NextPage<Props> = ({ data }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const data: Data[] = await prisma.data.findMany({
     take: 8,
+    orderBy: {
+      date: 'desc',
+    },
   });
   return {
     props: { data },

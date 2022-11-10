@@ -18,6 +18,9 @@ export default async function handler(
   const data: Data[] = await prisma.data.findMany({
     take: 8,
     skip,
+    orderBy: {
+      date: 'desc',
+    },
     where: {
       title: {
         contains: search,
