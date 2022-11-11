@@ -6,12 +6,14 @@ interface Props {}
 const Search: NextPage<Props> = ({}) => {
   const router = useRouter();
 
-  const handleSubmit = (event:any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
-    router.push(`/?search=${event.target[0].value}`);
+    event.target[0].value
+      ? router.push(`/?search=${event.target[0].value}`)
+      : router.push("/");
   };
   return (
-    <div className="container mx-auto mt-4 border p-10">
+    <div className="container mx-auto mt-4 border p-4 md:p-10">
       <form onSubmit={handleSubmit}>
         <label
           htmlFor="default-search"
@@ -41,8 +43,7 @@ const Search: NextPage<Props> = ({}) => {
             type="search"
             id="default-search"
             className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Movie Name, Web Series..."
-            required={true}
+            placeholder="Search Movie Name..."
           />
           <button
             type="submit"
