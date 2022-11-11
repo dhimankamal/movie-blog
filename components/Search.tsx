@@ -11,7 +11,7 @@ const Search: NextPage<Props> = ({}) => {
     router.push(`/?search=${event.target[0].value}`);
   };
   return (
-    <div className="container mx-auto mt-4">
+    <div className="container mx-auto mt-4 border p-10">
       <form onSubmit={handleSubmit}>
         <label
           htmlFor="default-search"

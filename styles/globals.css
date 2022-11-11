@@ -28,3 +28,30 @@ a {
     background: white;
   }
 }
+
+.emoji {
+  display: none;
+}
+
+.imdbwp__img {
+  display: none;
+}
+.maxbutton-1,
+.maxbutton {
+  padding: 10px;
+  border: 2px solid;
+}
+
+.post p {
+  margin: 20px 0;
+}
+
+.post h2 span {
+  font-size: 2rem;
+  font-weight: 500;
+  color: black !important;
+}
+.post #IndStreamPlayer{
+  display: none;
+}
+

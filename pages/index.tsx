@@ -33,7 +33,6 @@ const Home: NextPage<Props> = ({ data }) => {
   };
 
   useEffect(() => {
-    
     if (search || page) {
       updatePosts();
     } else {
@@ -42,10 +41,12 @@ const Home: NextPage<Props> = ({ data }) => {
   }, [search, page]);
 
   return (
-    <div>
+    <div className="space-y-4 mx-4">
       <Search />
-      <MainPage data={postData} />
-      <Pagination />
+      <div className="border container mx-auto p-10">
+        <MainPage data={postData} />
+        <Pagination />
+      </div>
     </div>
   );
 };
@@ -54,7 +55,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const data: Data[] = await prisma.data.findMany({
     take: 8,
     orderBy: {
-      date: 'desc',
+      date: "desc",
     },
   });
   return {
