@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
+import { NextSeo } from "next-seo";
 interface Props {
   data: Data[];
 }
@@ -47,31 +48,53 @@ const Home: NextPage<Props> = ({ data }) => {
   }, [search, page]);
 
   return (
-    <div className="space-y-4 mx-4">
-      <Search />
-      <div className="border container mx-auto py-4 md:p-10">
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <Spinner />
-          </div>
-        ) : (
-          <>
-            <MainPage data={postData} />
-            <Pagination />{" "}
-          </>
-        )}
+    <>
+      <NextSeo
+        title={"Home - " + process.env.NEXT_PUBLIC_SITE_NAME}
+        description={`Access largest movie collection with ${process.env.NEXT_PUBLIC_NAME} Now. Watch & download HD Movies, TV Shows.`}
+        canonical={process.env.NEXT_PUBLIC_DOMAIN_URL}
+        openGraph={{
+          url: process.env.NEXT_PUBLIC_DOMAIN_URL,
+          title:
+            "Access largest movie collection - " +
+            process.env.NEXT_PUBLIC_SITE_NAME,
+          description: `Access largest movie collection with ${process.env.NEXT_PUBLIC_NAME} Now. Watch & download HD Movies, TV Shows.`,
+          siteName: process.env.NEXT_PUBLIC_SITE_NAME,
+        }}
+      />
+
+      <div className="space-y-4 mx-4">
+        <Search />
+        <div className="border container mx-auto py-4 md:p-10">
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              <MainPage data={postData} />
+              <Pagination />{" "}
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: Data[] = await prisma.data.findMany({
-    take: 8,
-    orderBy: {
-      date: "desc",
-    },
-  });
+  let data: Data[] = [];
+  try {
+    data = await prisma.data.findMany({
+      take: 8,
+      orderBy: {
+        date: "desc",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
   return {
     props: { data },
   };

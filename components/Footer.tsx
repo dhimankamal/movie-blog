@@ -108,7 +108,7 @@ const Footer: NextPage<Props> = ({}) => {
       <div className="bg-gray-100 mt-10">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
-            © 2022 Movieblocks —
+            © 2022 {process.env.NEXT_PUBLIC_NAME} —
             <a
               href="https://twitter.com/"
               rel="noopener noreferrer"

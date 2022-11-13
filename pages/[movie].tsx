@@ -1,5 +1,7 @@
 import { Data } from "@prisma/client";
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
+import { NextSeo } from "next-seo";
+import Image from "next/image";
 import Search from "../components/Search";
 import { prisma } from "../db";
 //import { parse } from "node-html-parser";
@@ -21,22 +23,44 @@ const SinglePost: NextPage<Props> = ({ data }) => {
   // console.log(links);
 
   return (
-    <div className="text-black text-center container px-5 mx-auto space-y-4">
-      <div className="border p-4">
-        <h1 className="text-3xl font-bold ">{data?.title}</h1>
-      </div>
-      <div className="flex space-x-4">
-        <div
-          className="space-y-4 border p-4 post"
-          dangerouslySetInnerHTML={{
-            __html: getData || "",
-          }}
-        />
-        <div className="w-2/5 border p-4 hidden lg:block">
-         
+    <>
+      <NextSeo
+        title={data?.title + " | " + process.env.NEXT_PUBLIC_SITE_NAME}
+        description={
+          "Free download" +
+          data?.title +
+          " | " +
+          process.env.NEXT_PUBLIC_SITE_NAME
+        }
+        canonical={process.env.NEXT_PUBLIC_DOMAIN_URL || "" + data?.slug}
+      />
+
+      <div className="text-black text-center container px-5 mx-auto space-y-4">
+        <div className="border p-4">
+          <h1 className="text-3xl font-bold ">{data?.title}</h1>
+          <span className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{new Date(data?.date || '').toLocaleString()}</span>
+        </div>
+        <div className="flex space-x-4">
+          <div className="space-y-4 border p-4">
+            <Image
+            className="mx-auto"
+              src={data?.imageUrl || ""}
+              height="300"
+              width="200"
+              alt={data?.title || ""}
+            />
+            <div
+              className="space-y-4 post"
+              dangerouslySetInnerHTML={{
+                __html: getData || "",
+              }}
+            />
+          </div>
+
+          <div className="w-2/5 border p-4 hidden lg:block"></div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

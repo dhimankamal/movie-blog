@@ -14,7 +14,7 @@ const Categories: NextPage<Props> = ({ category }) => {
         <h3 className="text-4xl font-extrabold">Categories</h3>
       </div>
 
-      <div className="grid grid-cols-6 gap-4 justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 justify-center px-4">
         {category &&
           category.map(element => (
             <Link

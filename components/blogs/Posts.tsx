@@ -16,6 +16,7 @@ const Posts: NextPage<Props> = ({ data }) => {
           src={data.imageUrl || "https://dummyimage.com/200x300"}
           alt={data.title + ' Image'}
           title={data.title}
+          priority={true}
           width={200}
           height={300}
         />
